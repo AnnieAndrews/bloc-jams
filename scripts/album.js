@@ -4,7 +4,7 @@ var albumPicasso = {
   artist: 'Pablo Picasso',
   label: 'Cubism',
   year: '1881',
-  albumArUrl: 'assets/images/album_covers/01.png',
+  albumArtUrl: 'assets/images/album_covers/01.png',
   songs: [
     { title: 'Blue', duration: '4:26'},
     { title: 'Green', duration: '3:14'},
@@ -27,6 +27,28 @@ var albumMarconi = {
     { title: 'Fits in your pocket', duration: '3:21'},
     { title: 'Can you hear me now?', duration: '3:14' },
     { title: 'Wrong phone number', duration: '2:15'}
+  ]
+};
+
+// Album 3
+var albumTheNextDoorDown = {
+  title: 'Fly on the Wall',
+  artist: 'The Next Door Down',
+  label: 'GM Records',
+  year: '2017',
+  albumArtUrl: 'assets/images/album_covers/21.png',
+  songs: [
+    { title: 'Something in the Water', duration: '3:11' },
+    { title: 'When the Time Comes', duration: '3:46' },
+    { title: 'My Dear', duration: '3:21'},
+    { title: 'Hurry Along Child', duration: '3:17' },
+    { title: 'Fly on the Wall', duration: '3:54'},
+    { title: 'Obscure Art is Still Art', duration: '2:43'},
+    { title: 'Is Love Enough for You?', duration: '3:02'},
+    { title: 'That Hero You Know', duration: '4:05'},
+    { title: 'Supermarket Goodbyes', duartion: '3:44'},
+    { title: 'Fly on the Wall (Acoustic)', duration: '4:14'},
+    { title: 'That Hero You Know Remix ft. Kelly Rutherhill', duration: '4:11'}
   ]
 };
 
@@ -65,4 +87,25 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
   setCurrentAlbum(albumPicasso);
-}
+};
+
+// Checkpoint 24 assignment, my original code:
+// var albumToggle = function() {
+//   setCurrentAlbum(albums[index]);
+//   index++;
+//   ........ missing stuff here
+// };
+// albumImage.addEventListener('click', albumToggle , false);
+
+//Checkpoint 24 correct code:
+window.onload = function() {
+  var albums = [albumPicasso, albumMarconi, albumTheNextDoorDown];
+  var index = 1;
+  albumImage.addEventListener('click', function(event) {
+    setCurrentAlbum(albums[index]);
+    index++;
+    if (index== albums.length) {
+      index=0;
+    }
+  });
+};
