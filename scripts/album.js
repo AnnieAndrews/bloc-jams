@@ -4,7 +4,7 @@ var albumPicasso = {
   artist: 'Pablo Picasso',
   label: 'Cubism',
   year: '1881',
-  albumArUrl: 'assets/images/album_covers/01.png',
+  albumArtUrl: 'assets/images/album_covers/01.png',
   songs: [
     { title: 'Blue', duration: '4:26'},
     { title: 'Green', duration: '3:14'},
@@ -30,11 +30,33 @@ var albumMarconi = {
   ]
 };
 
+// Album 3
+var albumTheNextDoorDown = {
+  title: 'Fly on the Wall',
+  artist: 'The Next Door Down',
+  label: 'GM Records',
+  year: '2017',
+  albumArtUrl: 'assets/images/album_covers/21.png',
+  songs: [
+    { title: 'Something in the Water', duration: '3:11' },
+    { title: 'When the Time Comes', duration: '3:46' },
+    { title: 'My Dear', duration: '3:21'},
+    { title: 'Hurry Along Child', duration: '3:17' },
+    { title: 'Fly on the Wall', duration: '3:54'},
+    { title: 'Obscure Art is Still Art', duration: '2:43'},
+    { title: 'Is Love Enough for You?', duration: '3:02'},
+    { title: 'That Hero You Know', duration: '4:05'},
+    { title: 'Supermarket Goodbyes', duartion: '3:44'},
+    { title: 'Fly on the Wall (Acoustic)', duration: '4:14'},
+    { title: 'That Hero You Know Remix ft. Kelly Rutherhill', duration: '4:11'}
+  ]
+};
+
 // Create the rows for each individual album
 var createSongRow = function(songNumber, songName, songLength) {
   var template =
   '<tr class="album-view-song-item">'
-  +'  <td class="song-item-number">' + songNumber + '</td>'
+  +'  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
   +'  <td class="song-item-title">' + songName + '</td>'
   +'  <td class="song-item-duration">' + songLength + '</td>'
   +'</tr>'
@@ -63,6 +85,24 @@ var setCurrentAlbum = function(album) {
   }
 };
 
+var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
+var songRows = document.getElementsByClassName('album-view-song-item');
+
+var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
+
 window.onload = function() {
   setCurrentAlbum(albumPicasso);
-}
+
+  songListContainer.addEventListener('mouseover', function(event) {
+    if (event.target.parentElement.className === 'album-view-song-item') {
+      event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+    }
+  });
+
+  for (var i = 0; i < songRows.length; i++) {
+    songRows[i].addEventListener('mouseleave', function(event) {
+      // Selects the first child element, which is the song-item-number element.
+      this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
+    });
+  }
+};
