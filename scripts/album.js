@@ -157,13 +157,13 @@ window.onload = function() {
   });
 };
 
-// To change the song number to the pause button
-var findParentByClassName = function(element, targetClass) {
-    if (element) {
-        var currentParent = element.parentElement;
-        while (currentParent.className !== targetClass && currentParent.className !== null) {
-            currentParent = currentParent.parentElement;
-        }
-        return currentParent;
-    }
+// Assignment for checkpoint 26
+var findParentByClassName = function(element) {
+  var element = element.parentElement;
+  if (document.getElementByClassName("element")) {
+    return element;
+  if (document.getElementByClassName("element" == null))
+    return console.log("No parent found with that class name")
+  else return console.log("No parent found");
+  }
 };
