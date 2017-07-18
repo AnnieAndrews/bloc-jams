@@ -143,10 +143,9 @@ window.onload = function() {
 
   for (i = 0; i < songRows.length; i++) {
     songRows[i].addEventListener('mouseleave', function(event) {
-      //#1
       var songItem = getSongItem(event.target);
       var songItemNumber = songItem.getAttribute('data-song-number');
-      //#2
+
       if (songItemNumber !== currentlyPlayingSong) {
         songItem.innerHTML = songItemNumber;
       }
@@ -154,7 +153,8 @@ window.onload = function() {
 
     songRows[i].addEventListener('click', function(event) {
       clickHandler(event.target);
-  });
+    });
+  }
 };
 
 // To change the song number to the pause button
