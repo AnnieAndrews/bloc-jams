@@ -1,4 +1,5 @@
-var collectionItemTemplate =
+var buildCollectionItemTemplate = function() {
+  var template =
   '<div class="collection-album-container column fourth">'
   +' <img src="assets/images/album_covers/01.png"/>'
   +' <div class="collection-album-info caption">'
@@ -14,13 +15,14 @@ var collectionItemTemplate =
   +'</div>'
   ;
 
-window.onload = function() {
-  //Select the first elements with an album-covers class name and assign it to variable collectionContainer.
-  var collectionContainer = document.getElementsByClassName('album-covers')[0];
-  //Assign an empty string to collectionContainer's innerHTML to clear its content (clean slate before adding JavaScipt).
-  collectionContainer.innerHTML = ' ';
-  //Insert the 12 albums
+  return $(template);
+};
+
+$(window).load(function() {
+  var $collectionContainer = $('.album-covers');
+  $collectionContainer.empty();
   for (var i=0; i < 12; i++) {
-    collectionContainer.innerHTML += collectionItemTemplate;
+  var $newThumbnail = buildCollectionItemTemplate();
+  $collectionContainer.append($newThumbnail);
   }
-}
+});
